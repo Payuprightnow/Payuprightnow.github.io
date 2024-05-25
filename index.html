@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Tip Screen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tip-container">
+        <h1 class="tip-heading">Leave a tip?</h1>
+      <div class="amount-chosen">Selection: </div>
+      <div class="comment"></div>
+        <div class="tip-buttons">
+            <button class="tip-button" onclick="setTip(5)">$5</button>
+            <button class="tip-button" onclick="setTip(10)">$10</button>
+            <button class="tip-button" onclick="setTip(20)">$20</button>
+            <button class="tip-button custom" onclick="setCustomTip()">Custom</button>
+            <button id="none-button" class="tip-button none" onclick="hideNoTipButton()">No Tip</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
