@@ -1,21 +1,34 @@
-<!DOCTYPE html>
+<!-- HTML -->
+<div class="payment-buttons">
+  <a href="https://www.paypal.com" target="_blank">
+    <button class="blue-button">PayPal</button>
+  </a>
+  <a href="https://www.paypal.com/paylater" target="_blank">
+    <button class="blue-button">Pay Later</button>
+  </a>
+  <a href="https://venmo.com" target="_blank">
+    <button class="blue-button">Venmo</button>
+  </a>
+</div>
 
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- CSS (in style.css file) -->
+.payment-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-            <title>PayPal Buttons Integration</title>
+.blue-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}
 
-            <link rel="stylesheet" href="/demo/checkout/static/css/style.css">
-
-            <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-
-            <script src="/demo/checkout/static/js/fetch.min.js" type="text/javascript" charset="utf-8"></script>
-            <script src="/demo/checkout/static/js/ace.js" type="text/javascript" charset="utf-8"></script>
-        </head>
-
-        <body data-csrf="MP73mnO33PGyD/atpF16GN987uZl2UYkUbtfo=" data-base-url="/demo/checkout">
-            <div id="app" class="app"></div>
-            <script src="/demo/checkout/static/js/demo.js"></script>
-        </body>
-    
+.blue-button:hover {
+  background-color: #0069d9;
+}
