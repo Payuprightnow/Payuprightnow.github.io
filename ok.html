@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PayPal JS SDK Standard Integration</title>
-  </head>
-  <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Checkout</title>
+</head>
+<body>
     <div id="paypal-button-container"></div>
-    <p id="result-message"></p>
-    
-    <!-- Initialize the JS-SDK -->
-    <script
-      src="https://www.paypal.com/sdk/js?client-id=test&buyer- 
-      country=US&currency=USD&components=buttons&enable-funding=venmo"
-      data-sdk-integration-source="developer-studio"
-    ></script>
-    <script src="app.js"></script>
-    
-  </body>
-</html>
 
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+
+    <script>
+        // Called when the PayPal button is clicked
+        function initPayPalButton() {
+            paypal.Buttons({
+                // Set up the transaction
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '10.00' // Can also be obtained from your server
+                            }
+                        }]
+                    });
+                },
+
+                // Called when the buyer approves the transaction
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        // Call your server to save the transaction
+                        return fetch('/paypal-transaction-complete', {
+                            method: 'post',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                orderID: data.orderID
+                            })
+                        });
+                    });
+                }
+
+            }).render('#paypal-button-container');
+        }
+
+        initPayPalButton();
+    </script>
+</body>
+</html>
